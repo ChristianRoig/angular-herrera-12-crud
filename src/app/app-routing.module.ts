@@ -1,12 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { HeroeComponent } from './pages/heroe/heroe.component';
 import { HeroesComponent } from './pages/heroes/heroes.component';
+import { PersonasComponent } from './modules/personas/personas.component';
+import { PersonaComponent } from './modules/personas/persona/persona.component';
 
 const routes: Routes = [
   { path: 'heroes', component: HeroesComponent },
   { path: 'heroe/:id', component: HeroeComponent },
-  { path: '**', pathMatch: 'full', redirectTo: 'heroes' },
+
+  { path: 'personas', component: PersonasComponent },
+  { path: 'persona/:id', component: PersonaComponent },
+
+  { path: '**', pathMatch: 'full', redirectTo: 'heroes' }
 ];
 
 

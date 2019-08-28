@@ -8,6 +8,7 @@ import { HeroesComponent } from './pages/heroes/heroes.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { PersonasModule } from './modules/personas/personas.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+
+    PersonasModule
   ],
   providers: [],
   bootstrap: [AppComponent]
