@@ -10,13 +10,18 @@ export class PersonasService {
 
   getPersonas() {
 
-    return [];
+    // return [];
+    return [ new Persona('Emmanuel Ginobili'), new Persona('Lionel Messi') ];
+
 
   }
 
   getPersona( id: string ) {
 
-    return new Persona('Service & Model works - ' + id);
+    const p = new Persona('Lionel Messi' );
+    p.id = id;
+
+    return p;
 
   }
 

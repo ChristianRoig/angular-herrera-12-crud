@@ -1,5 +1,51 @@
 <h1>Listado de Personas </h1>
 <hr>
-<p>
-    personas works! ( {{ personas.length }} items )
-</p>
+<div class="row">
+    <div class="col text-right">
+        <button routerLink='/persona/nuevo' class="btn btn-primary">
+          <i class="fa fa-plus"></i>
+          Agregar
+      </button>
+    </div>
+</div>
+
+<table *ngIf="!cargando && personas.length > 0" class="table mt-3 animated fadeIn faster">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Estado</th>
+            <th scope="col" class="text-right">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let persona of personas; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ persona.nombre }}</td>
+            <td>
+                <label *ngIf="persona.estado==='Activo'" class="badge badge-success">{{ persona.estado }}</label>
+                <label *ngIf="persona.estado!=='Activo'" class="badge badge-danger">{{ persona.estado }}</label>
+            </td>
+            <td class="text-right">
+                <button class="btn btn-info mr-1" [routerLink]="['/persona',persona.id]">
+                  <i class="fa fa-pen"></i>
+                </button>
+                <button class="btn btn-danger" (click)="delete( persona, i )">
+                  <i class="fa fa-trash"></i>
+              </button>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="!cargando && personas.length === 0" class="alert alert-warning text-center mt-3 animated fadeIn faster" role="alert">
+    <h4 class="alert-heading">No hay Registros</h4>
+    <p><i class="fa fa-exclamation fa-2x"></i></p>
+</div>
+
+<div *ngIf="cargando" class="alert alert-info text-center mt-3 animated fadeIn faster" role="alert">
+    <h4 class="alert-heading">Cargando</h4>
+    <p><i class="fa fa-sync-alt fa-spin fa-2x"></i></p>
+    <p class="mb-0">Espere por favor</p>
+</div>

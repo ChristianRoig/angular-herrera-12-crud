@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Persona } from '../persona.model';
 import { PersonasService } from '../personas.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-persona',
@@ -17,12 +18,22 @@ export class PersonaComponent implements OnInit {
   constructor( private personasService: PersonasService ,
                private route: ActivatedRoute ) { }
 
-ngOnInit() {
+  ngOnInit() {
 
     this.id = this.route.snapshot.paramMap.get('id');
 
     this.persona = this.personasService.getPersona( this.id );
 
+    console.log(this.persona);
+
+  }
+
+  save( form: NgForm ) {
+
+    if ( form.invalid ) {
+      console.log('Formulario no valido');
+      return;
+    }
   }
 
 }

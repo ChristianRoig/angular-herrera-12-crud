@@ -8,6 +8,7 @@ export class Persona {
 
         this.nombre = nombre;
         this.estado = 'Activo';
+        this.id = 'af24q5';
 
     }
 }
