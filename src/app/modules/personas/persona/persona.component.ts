@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { Observable } from 'rxjs';
+import Swal from 'sweetalert2';
 
 import { Persona } from '../persona.model';
 import { PersonasService } from '../personas.service';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-persona',
@@ -12,7 +14,7 @@ import { NgForm } from '@angular/forms';
 })
 export class PersonaComponent implements OnInit {
 
-  persona: Persona;
+  persona: Persona = new Persona('');
   id: string;
 
   constructor( private personasService: PersonasService ,
@@ -22,9 +24,15 @@ export class PersonaComponent implements OnInit {
 
     this.id = this.route.snapshot.paramMap.get('id');
 
-    this.persona = this.personasService.getPersona( this.id );
-
-    console.log(this.persona);
+    if ( this.id !== 'nuevo' ) {
+      this.personasService.get( this.id ).subscribe(
+        (resp: Persona) => {
+          this.persona = resp;
+          this.persona.id = this.id;
+          console.log(this.persona);
+         }
+      );
+    }
 
   }
 
@@ -34,6 +42,47 @@ export class PersonaComponent implements OnInit {
       console.log('Formulario no valido');
       return;
     }
+
+    if ( this.persona.id ) {
+      this.personasService.update( this.persona ).subscribe();
+    } else  {
+      this.personasService.create( this.persona ).subscribe();
+    }
+
+  }
+
+  // Save con popups de espera y confirmación.
+  savePop( form: NgForm ) {
+
+    if ( form.invalid ) {
+      console.log('Formulario no valido');
+      return;
+    }
+
+    Swal.fire({
+      title: 'Espere',
+      text: 'Guardando Info',
+      type: 'info',
+      allowOutsideClick: false
+    });
+    Swal.showLoading();
+
+    let peticion: Observable<any>;
+
+    if ( this.persona.id ) {
+      peticion = this.personasService.update( this.persona );
+    } else  {
+      peticion = this.personasService.create( this.persona );
+    }
+
+    peticion.subscribe ( resp => {
+      console.log( resp );
+      Swal.fire({
+        title: this.persona.nombre,
+        text: 'Se actualizó correctamente',
+        type: 'success'
+      });
+    });
   }
 
 }
