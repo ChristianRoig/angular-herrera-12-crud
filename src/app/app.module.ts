@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { PersonasModule } from './modules/personas/personas.module';
+import { ProductosModule } from './modules/productos/productos.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PersonasModule } from './modules/personas/personas.module';
     FormsModule,
     HttpClientModule,
 
-    PersonasModule
+    PersonasModule,
+    ProductosModule
   ],
   providers: [],
   bootstrap: [AppComponent]

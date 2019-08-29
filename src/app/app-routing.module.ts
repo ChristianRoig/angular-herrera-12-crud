@@ -3,8 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HeroeComponent } from './pages/heroe/heroe.component';
 import { HeroesComponent } from './pages/heroes/heroes.component';
+
 import { PersonasComponent } from './modules/personas/personas.component';
 import { PersonaComponent } from './modules/personas/persona/persona.component';
+import { ProductosComponent } from './modules/productos/productos.component';
+import { ProductoComponent } from './modules/productos/producto/producto.component';
 
 const routes: Routes = [
   { path: 'heroes', component: HeroesComponent },
@@ -12,6 +15,9 @@ const routes: Routes = [
 
   { path: 'personas', component: PersonasComponent },
   { path: 'persona/:id', component: PersonaComponent },
+
+  { path: 'productos', component: ProductosComponent },
+  { path: 'producto/:id', component: ProductoComponent },
 
   { path: '**', pathMatch: 'full', redirectTo: 'heroes' }
 ];

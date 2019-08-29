@@ -1,4 +1,4 @@
-export class Persona {
+export class Producto {
 
     id: string;
     nombre: string;
