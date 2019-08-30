@@ -4,6 +4,7 @@ import Swal, { SweetAlertOptions } from 'sweetalert2';
 
 import { PersonasService } from './personas.service';
 import { Persona } from './persona.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-personas',
@@ -13,12 +14,18 @@ import { Persona } from './persona.model';
 export class PersonasComponent implements OnInit {
 
   personas: Persona[];
-
   cargando = false;
 
-  constructor( private personasService: PersonasService ) { }
+  subtype: string;
+
+  constructor( private personasService: PersonasService,
+               private route: ActivatedRoute ) { }
 
   ngOnInit() {
+
+    this.subtype = this.route.snapshot.url[0].path;
+    this.subtype = this.subtype.slice(0, this.subtype.length - 1); // saco la 's' para que quede en singular.
+    console.log( this.subtype );
 
     this.cargando = true;
     this.personasService.getAll().subscribe (

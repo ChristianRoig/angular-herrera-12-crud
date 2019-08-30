@@ -17,12 +17,17 @@ export class PersonaComponent implements OnInit {
   persona: Persona = new Persona('');
   id: string;
 
+  subtype: string;
+
   constructor( private personasService: PersonasService ,
                private route: ActivatedRoute ) { }
 
   ngOnInit() {
 
     this.id = this.route.snapshot.paramMap.get('id');
+
+    this.subtype = this.route.snapshot.url[0].path;
+    console.log( this.subtype );
 
     if ( this.id !== 'nuevo' ) {
       this.personasService.get( this.id ).subscribe(

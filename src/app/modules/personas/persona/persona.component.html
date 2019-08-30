@@ -3,7 +3,7 @@
 
 <div class="row text-right">
     <div class="col">
-        <button class="btn btn-danger" routerLink="/personas">
+        <button class="btn btn-danger" [routerLink]="['/'+subtype+'s']">
           <i class="fa fa-arrow-left"></i> 
           Regresar 
       </button>
@@ -24,6 +24,26 @@
             <div class="form-group">
                 <label>Nombre</label>
                 <input type="text" class="form-control" placeholder="Nombre" [(ngModel)]="persona.nombre" name="nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label>Codigo</label>
+                <input type="text" class="form-control" placeholder="Codigo" [(ngModel)]="persona.cod" name="cod" required>
+            </div>
+
+            <div class="form-group">
+                <label>Nombre Corto</label>
+                <input type="text" class="form-control" placeholder="Nombre Corto" [(ngModel)]="persona.nmb" name="nmb" required>
+            </div>
+
+            <div class="form-group">
+                <label>Dirección</label>
+                <input type="text" class="form-control" placeholder="Dirección" [(ngModel)]="persona.direccion" name="direccion" required>
+            </div>
+
+            <div class="form-group">
+                <label>Localidad</label>
+                <input type="text" class="form-control" placeholder="Localidad" [(ngModel)]="persona.localidad" name="localidad" required>
             </div>
 
             <div class="form-group">

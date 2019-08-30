@@ -16,6 +16,9 @@ const routes: Routes = [
   { path: 'personas', component: PersonasComponent },
   { path: 'persona/:id', component: PersonaComponent },
 
+  { path: 'clientes', component: PersonasComponent },
+  { path: 'cliente/:id', component: PersonaComponent },
+
   { path: 'productos', component: ProductosComponent },
   { path: 'producto/:id', component: ProductoComponent },
 
